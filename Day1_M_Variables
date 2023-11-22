@@ -1,1 +1,188 @@
+review 1.cs
+
+public bool IsShopOpen(string day)
+{
+    if (!string.IsNullOrEmpty(day))
+    {
+        day = day.ToLower();
+        if (day == "friday")
+        {
+            return true;
+        }
+        else if (day == "saturday")
+        {
+            return true;
+        }
+        else if (day == "sunday")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
+
+}
+
+
+//changed 
+public bool IsShopOpen(string day)
+{
+    if (string.IsNullOrEmpty(day))
+    {
+        return false;
+    }
+ 
+    switch (day.ToLower())
+    {
+        case "friday":
+        case "saturday":
+        case "sunday":
+            return true;
+        default:
+            return false;
+    }
+}
+
+
+review 3 .cs
+public long Fibonacci(int n)
+{
+    if (n < 50)
+    {
+        if (n != 0)
+        {
+            if (n != 1)
+            {
+                return Fibonacci(n - 1) + Fibonacci(n - 2);
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else
+    {
+        throw new System.Exception("Not supported");
+    }
+}
+
+//changed 
+
+
+public long Fibonacci(int n)
+{
+    if (n < 0 || n >= 50)
+    {
+        throw new ArgumentOutOfRangeException(nameof(n), "Value should be between 0 and 49.");
+    }
+ 
+    long a = 0, b = 1;
+ 
+    for (int i = 2; i <= n; i++)
+    {
+        long temp = a + b;
+        a = b;
+        b = temp;
+    }
+ 
+   // return (n == 0) ? a : b;
+   if(n==0)
+   {
+    return a;
+   }
+   else 
+   return b;
+}
+
+review 4.cs
+var l = new[] { "Austin", "New York", "San Francisco" };
+
+for (var i = 0; i < l.Count(); i++)
+{
+    var li = l[i];
+    DoStuff();
+    DoSomeOtherStuff();
+
+    // ...
+    // ...
+    // ...
+    // Wait, what is `li` for again?
+    Dispatch(li);
+}
+changed
+
+var location = new[] { "Austin", "New York", "San Francisco" };
+
+for (var i = 0; i < location.Count(); i++)
+{
+    var list = location[i];
+    DoStuff();
+    DoSomeOtherStuff();
+
+    // ...
+    // ...
+    // ...
+    // Wait, what is `li` for again?
+    Dispatch(list);
+}
+
+review5.cs
+
+if (userRole == 8) // Check if Admin 
+{
+    
+}
+changed
+var SystemAdmin="admin"
+if (userRole ==SystemAdmin ) // Check if Admin 
+{
+    
+}
+
+review6.cs
+public class Car
+{
+    public string CarMake { get; set; }
+    public string CarModel { get; set; }
+    public string CarColor { get; set; }
+
+    //...
+}
+public class Car
+{
+    public string Make { get; set; }
+    public string Model { get; set; }
+    public string Color { get; set; }
+
+    //...
+}
+
+review7.cs
+var ymdstr = DateTime.UtcNow.ToString("MMMM dd, yyyy");
+var Date = DateTime.UtcNow.ToString("mm, dd, yyyy");
+
+review9.cs
+public void CreateMicrobrewery(string name = null)
+{
+    var breweryName = !string.IsNullOrEmpty(name) ? name : "Hipster Brew Co.";
+    // ...
+}
+
+public void CreateMicrobrewery(string name = "Hipster Brew Co.";)
+{
+
+}
+
+
 
